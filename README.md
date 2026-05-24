@@ -85,7 +85,37 @@ This template is designed for a **multi-branch, multi-version** strategy:
 | `mc/1.21.11` | 1.21.11 | Active development |
 | `mc/26.1` | 26.1 | Snapshot forward-port |
 
-Each branch targets a different MC version. Features are developed on one branch and **cherry-picked** to others. See [CLAUDE.md](CLAUDE.md) for the full development strategy including git worktree setup.
+Each branch targets a different MC version. Features are developed on one branch and **cherry-picked** to others. See [CLAUDE.md](CLAUDE.md) for the full development strategy.
+
+## Git Worktrees
+
+Worktrees let you check out multiple branches simultaneously in sibling directories, so you can compare or copy code across versions without stashing or switching branches.
+
+**One-time setup** (after your `mc/*` branches exist):
+
+```bash
+git worktree add ../my-mod-mc-1.21.1 mc/1.21.1
+git worktree add ../my-mod-mc-1.21.11 mc/1.21.11
+git worktree add ../my-mod-mc-26.1 mc/26.1
+```
+
+Each path becomes a fully independent working directory on that branch. You can open them all in your IDE at once, run Gradle in any of them, and cherry-pick between them without touching your main checkout.
+
+**Typical cross-version workflow:**
+
+```bash
+# Fix a bug on mc/1.21.11
+cd ../my-mod-mc-1.21.11
+git checkout -b fix/some-bug
+# ... make fix, commit ...
+git push && gh pr create
+
+# After it merges, port it to mc/26.1
+cd ../my-mod-mc-26.1
+git fetch origin
+git cherry-pick <commit-sha>
+git push origin mc/26.1
+```
 
 ## CI/CD Setup
 
