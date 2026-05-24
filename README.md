@@ -19,34 +19,33 @@ A production-grade multiloader Minecraft mod template for **Fabric** and **NeoFo
 
 ## Getting Started
 
-### 1. Clone and rename
+### 1. Clone and initialize
 
 ```bash
 git clone https://github.com/yourname/mc-skeleton my-mod
 cd my-mod
-# Disconnect from the skeleton's history
+# Disconnect from the skeleton's history and point to your own repo
 git remote remove origin
+git remote add origin git@github.com:yourname/my-mod.git
 ```
 
-Then rename placeholders throughout the project:
+Then run the setup task to rename all placeholders in one shot:
 
-| Find | Replace with |
-|------|-------------|
-| `template` | your mod ID (e.g., `coolmod`) |
-| `Template` | your mod display name (e.g., `Cool Mod`) |
-| `com.example.template` | your package (e.g., `com.yourname.coolmod`) |
-| `com.example` | your base package (e.g., `com.yourname`) |
-| `archives_base_name=template` | `archives_base_name=coolmod` |
-| `Your Name (@yourhandle)` | your name |
+```bash
+./gradlew setupMod \
+  -PmodId=mymod \
+  -PpackageName=com.yourname.mymod \
+  -PmodDisplayName="My Mod" \
+  -Pdescription="A mod that does something cool." \
+  -Pauthors="Your Name (@yourhandle)"
+```
 
-Files to update:
-- `gradle.properties` — `maven_group`, `archives_base_name`
-- `settings.gradle` — `rootProject.name`
-- `fabric/src/main/resources/fabric.mod.json` — id, name, description, authors, entrypoints
-- `neoforge/src/main/resources/META-INF/neoforge.mods.toml` — modId, displayName, description, authors
-- `release-please-config.json` — `package-name`
-- All Java source files — package declarations and class names
-- `CLAUDE.md` — update worktree paths and mod-specific references
+This renames every file, directory, and text occurrence of the `template` placeholder — Java class names, package paths, mod metadata, Gradle config, everything. Review the changes with `git diff`, then commit.
+
+**Manual things to update after `setupMod`:**
+- `LICENSE` — replace `[YEAR]` and `[AUTHOR]`
+- `fabric.mod.json` — update `contact.homepage`, `contact.issues`, `contact.sources`
+- `CLAUDE.md` — update worktree paths from `your-mod-mc-*` to your actual repo name
 
 ### 2. Set up developer tooling
 
