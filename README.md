@@ -1,6 +1,6 @@
 # mc-skeleton
 
-A production-grade multiloader Minecraft mod template for **Fabric** and **NeoForge**, targeting MC 26.1 (Java 25). Clone this to start a new mod with a full development workflow already configured.
+A production-grade multiloader Minecraft mod template for **Fabric** and **NeoForge**, targeting MC 26.1 (Java 25). Use this template to start a new mod with a full development workflow already configured.
 
 ## What's Included
 
@@ -19,17 +19,20 @@ A production-grade multiloader Minecraft mod template for **Fabric** and **NeoFo
 
 ## Getting Started
 
-### 1. Clone and initialize
+### 1. Create your repo from this template
 
+**Option A — GitHub web UI:**
+Click **"Use this template" → "Create a new repository"** at the top of this page. GitHub creates a fresh repo with a clean single commit (no skeleton history).
+
+**Option B — GitHub CLI:**
 ```bash
-git clone https://github.com/yourname/mc-skeleton my-mod
+gh repo create my-mod --template Indemnity83/mc-skeleton --clone --private
 cd my-mod
-# Disconnect from the skeleton's history and point to your own repo
-git remote remove origin
-git remote add origin git@github.com:yourname/my-mod.git
 ```
 
-Then run the setup task to rename all placeholders in one shot:
+### 2. Initialize your mod identity
+
+Run the setup task to rename all placeholders in one shot:
 
 ```bash
 ./gradlew setupMod \
@@ -47,7 +50,7 @@ This renames every file, directory, and text occurrence of the `template` placeh
 - `fabric.mod.json` — update `contact.homepage`, `contact.issues`, `contact.sources`
 - `CLAUDE.md` — update worktree paths from `your-mod-mc-*` to your actual repo name
 
-### 2. Set up developer tooling
+### 3. Set up developer tooling
 
 ```bash
 ./gradlew installGitHooks
@@ -55,7 +58,7 @@ This renames every file, directory, and text occurrence of the `template` placeh
 
 This installs the pre-commit hook that auto-formats your code with Spotless before every commit.
 
-### 3. Build and test
+### 4. Build and test
 
 ```bash
 ./gradlew :common:test       # Run unit tests
@@ -64,7 +67,7 @@ This installs the pre-commit hook that auto-formats your code with Spotless befo
 ./gradlew build              # Build everything + tests
 ```
 
-### 4. Run in-game
+### 5. Run in-game
 
 ```bash
 # From repo root
