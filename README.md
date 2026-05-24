@@ -13,7 +13,7 @@ A production-grade multiloader Minecraft mod template for **Fabric** and **NeoFo
 
 ## Prerequisites
 
-- **Java 25** (required by MC 26.1 — use [SDKMAN](https://sdkman.io/) or [Adoptium](https://adoptium.net/))
+- **Java 25**
 - A Minecraft account (for `runClient`)
 - Git
 
