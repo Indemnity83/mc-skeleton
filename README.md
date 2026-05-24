@@ -99,7 +99,7 @@ git worktree add ../my-mod-mc-1.21.11 mc/1.21.11
 git worktree add ../my-mod-mc-26.1 mc/26.1
 ```
 
-Each path becomes a fully independent working directory on that branch. You can open them all in your IDE at once, run Gradle in any of them, and cherry-pick between them without touching your main checkout.
+Each path becomes a fully independent working directory on that branch. Open each one in its own IDE session, run Gradle in any of them, and cherry-pick between them without touching your main checkout.
 
 **Typical cross-version workflow:**
 
